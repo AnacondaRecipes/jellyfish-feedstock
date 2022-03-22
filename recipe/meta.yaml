@@ -22,7 +22,6 @@ requirements:
   build:
     - {{ compiler('c') }}
   host:
-    - {{ compiler('c') }}
     - pip
     - python
     - setuptools
