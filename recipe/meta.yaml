@@ -15,17 +15,17 @@ source:
 
 build:
   number: 0
+  skip: true  # [py<36]
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}
   host:
-    - {{ compiler('c') }}
     - pip
     - python
+    - setuptools
+    - wheel
   run:
     - python
 
