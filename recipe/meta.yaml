@@ -17,11 +17,12 @@ build:
 
 requirements:
   build:
+    - {{ compiler('c') }}  # [linux]
     - {{ compiler('rust') }}
   host:
     - pip
     - python
-    - maturin >=0.14,<2
+    - maturin
   run:
     - python
 
