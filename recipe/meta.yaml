@@ -38,7 +38,7 @@ about:
   license: MIT
   license_file: LICENSE
   license_family: MIT
-  summary: A library for doing approximate and phonetic matching of strings.
+  summary: A library for doing approximate and phonetic matching of strings
   description: |
     jellyfish is a library for approximate & phonetic matching of strings.
   dev_url: https://github.com/jamesturk/jellyfish
