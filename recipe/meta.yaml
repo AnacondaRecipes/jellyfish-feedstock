@@ -22,7 +22,7 @@ requirements:
   host:
     - pip
     - python
-    - maturin
+    - maturin >=0.14,<2
   run:
     - python
 
