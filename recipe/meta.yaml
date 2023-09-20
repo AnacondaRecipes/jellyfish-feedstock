@@ -1,31 +1,28 @@
 {% set name = "jellyfish" %}
-{% set version = "0.9.0" %}
-{% set bundle = "tar.gz" %}
-{% set hash = "40c9a2ffd8bd3016f7611d424120442f627f56d518a106847dc93f0ead6ad79a" %}
-
+{% set version = "1.0.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.{{ bundle }}
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ bundle }}
-  sha256: {{ hash }}
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: f664520189e3ae16e0b5fee21f19d15c8926e2320fd195ccc65d96390d9e9689
 
 build:
   number: 0
-  skip: true  # [py<36]
-  script: {{ PYTHON }} -m pip install . -vv
+  # maturin isn't available on s390x
+  skip: true  # [py<37 or s390x]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   build:
-    - {{ compiler('c') }}
+    - {{ compiler('c') }}  # [linux]
+    - {{ compiler('rust') }}
   host:
     - pip
     - python
-    - setuptools
-    - wheel
+    - maturin
   run:
     - python
 
@@ -39,12 +36,14 @@ test:
 
 about:
   home: https://github.com/jamesturk/jellyfish
-  license: BSD-2-Clause
+  license: MIT
   license_file: LICENSE
-  license_family: BSD
-  summary: a library for doing approximate and phonetic matching of strings.
+  license_family: MIT
+  summary: A library for doing approximate and phonetic matching of strings
+  description: |
+    jellyfish is a library for approximate & phonetic matching of strings.
   dev_url: https://github.com/jamesturk/jellyfish
-  doc_url: https://jellyfish.readthedocs.io/en/latest/
+  doc_url: https://github.com/jamesturk/jellyfish
 
 extra:
   recipe-maintainers:
