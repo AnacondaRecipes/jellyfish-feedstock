@@ -16,7 +16,7 @@ build:
 
 requirements:
   build:
-    - {{ stdlb('c') }}
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - {{ compiler('rust') }}
   host:
